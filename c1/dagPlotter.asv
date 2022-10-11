@@ -1,0 +1,22 @@
+function [] = dagPlotter(G, A, weightedEdges)
+%
+subplot(1,2,1)
+
+if(weightedEdges)
+    plot(G,'EdgeColor','k', ...
+        EdgeLabel',G.Edges.Weight,'EdgeLabelColor','red')
+    colormap(gray)
+else
+    plot(G)
+ 
+end
+title("DAG")
+caxis([0, 1]);
+colormap(gray)
+
+subplot(1,2,2)
+heatmap(A)
+colormap(gray)
+title("Adjacency Matrix")
+end
+
