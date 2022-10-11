@@ -1,15 +1,15 @@
 function [d, allIterations, totalCost, path] = bellmanFord(n,G,E,r)
-
+%% The function takes the 
 %% Intialization
 N = r;         % Number of Nodes
-e = length(E); % Number of Edges
+e = length(E(:,3)); % Number of Edges
 
-U = E(:,1); % Signal Propagating Nodes
-V = E(:,2); % Signal Terminating Nodes
-W = E(:,3); % Weights of Edges
+U = E(:,1);    % Signal Propagating Nodes
+V = E(:,2);    % Signal Terminating Nodes
+W = E(:,3);    % Weights of Edges
 
-d(1:N)=Inf; % distance of each node initialized to infinity 
-d(n)=0;     % distance of source node intitalized to 0
+d(1:N)=Inf;    % distance of each node initialized to infinity 
+d(n)=0;        % distance of source node intitalized to 0
 
 predecessor(1:N)=0;
 
@@ -28,10 +28,10 @@ for k=1:N-1 % For each edge (u,v)...
         u = U(i); % u_i in U
         w = W(i); % w_i in W
 
-        % Condition for Update (t)
+        % t := variable for condition update
         t = d(u)+w; 
-
-        if (t < d(v))
+        
+        if (t < d(v)) % if 
             d(v) = t;
             predecessor(v) = u; 
         end
@@ -39,20 +39,30 @@ for k=1:N-1 % For each edge (u,v)...
     end
 end
 
-current = r;
-path = []; %empty list
+%% Trace Path
+
+current = r; % Starting from r and back
+path = []; % Create empty list to create array of nodes
 while (current ~= 0)
-   path(end+1) = (current);
+   path(end+1) = current;
    current = predecessor(current);
 end
 
+totalCost = d(r); % Self-explanatory
+
+%% Plotting 
+% Kinda cheating here. The properties of the digraph G simplifies the
+% plotting process for graphs, so I took advantage the shortestpathtree
+% property. However, if you're thinking that are any shinanigans, 
+% you can refer and compare the results of TR with the "path" variable.
+
 for i=1:(N-1)
-    totalCost = d(r);
     TR=shortestpathtree(G,n,r);
     p=plot(G);
     highlight(p,TR,'EdgeColor','red','LineWidth',5);
+    title("Shortest Path")
 end
-
+%% Convert results to table for your viewing pleasure
 d = array2table(d,"VariableNames",labels);
 allIterations = array2table(allIterations,"VariableNames",labels);
 
