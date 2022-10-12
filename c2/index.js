@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 
 app.get("/", (req,res) => {
-    res.send(`<h2>Thank you for this oppertunity! You're now listening to ${port}${baseURL}</h2>`)
+    res.send(`<h2>Thank you for this oppertunity! You're now listening to PORT ${port} with BASE_URL: ${baseURL}</h2>`)
 })
 
 const port = process.env.PORT || 3333

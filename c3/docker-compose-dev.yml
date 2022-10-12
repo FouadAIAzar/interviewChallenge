@@ -1,0 +1,9 @@
+version: "3"
+services:
+  server:
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+    - NODE_ENV=production
+    command: npm run dev
