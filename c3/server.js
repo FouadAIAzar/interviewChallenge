@@ -2,7 +2,7 @@ const express = require("express")
 const app = express();
 
 const mongoose = require("mongoose")
-
+const cors = require("cors")
 app.set('view engine', 'ejs')
 
 const {
@@ -20,7 +20,7 @@ const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_
 const tryAgain = () => {
     mongoose
         .connect(mongoURL)
-        .then(() => console.log(`succesfully connected to ${MONGO_IP}`))
+        .then(() => console.log(`succesfully connected to ${MONGO_IP} database`))
         .catch((e) => {
         console.log(e);
         setTimeout(connectWithRetry, 5000);
@@ -29,20 +29,16 @@ const tryAgain = () => {
 
 tryAgain();
 app.enable("trust proxy")
-
+app.use(cors({}));
 app.use(express.json())
 
 app.get("/", (req,res) => {
-    res.send("<h1>NGINX</h1>")
+    res.send("<h1>I AM SERVER A</h1>")
 })
 
 //localhost:${MONGO_IP}
 app.use(`/${MONGO_IP}`, postRouter)
 
-function logger(req,res,next){
-    console.log(req.originalUrl)
-    next()
-}
 
 const port = process.env.PORT || 3000
 
