@@ -1,9 +1,20 @@
 version: "3"
 services:
+  nginx:
+    ports:
+      - "80:80"
   server:
+    build:
+      context: .
+      args: 
+        NODE_ENV: production
     volumes:
       - ./:/app
       - /app/node_modules
     environment:
-    - NODE_ENV=development
+    - NODE_ENV=production
+    - MONGO_USER=IBG4
+    - MONGO_PASSWORD=31415
+
     command: npm run start
+  
