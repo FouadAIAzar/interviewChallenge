@@ -12,4 +12,4 @@ const router = require('./routes')
 
 app.use(`${baseURL}`, router)
 
-app.listen(port, () => console.log(`PORT: ${port}\nBASE_URL:${baseURL}`))
+app.listen(port, () => console.log(`PORT/BASE_URL: ${port}${baseURL}`))
