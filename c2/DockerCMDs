@@ -1,15 +1,16 @@
-# [in Linux] Change environment variables to the dersired $PORT and $BASE_URL values before running
+# Before start-up, Change environment variables to the dersired $PORT and $BASE_URL
+chmod +x ./change.sh
 ./change.sh
 
 # Run this command to build server container. The name of the container will be:
-# [name-of-folder]-node-app-1
-docker-compose up --build
+# c2_server_1
+sudo docker-compose up --build
 
-# Add -d flag to run in detach mode
-docker-compose up --build -d
+# Pass the -d flag to run in detach mode
+sudo docker-compose up --build -d
 
-# Run this command to decompose container and remove volumes
-docker-compose down -v
+# Run this command to open bash in the container c2_server_1
+sudo docker exec -it c2_server_1 bash
 
-# Run this command to open bash in the container [name-of-folder]-node-app-1
-docker exec -it [name-of-folder]-node-app-1 bash
+# When you're all done, run this command to decompose container and remove all associated volumes
+sudo docker-compose down -v
