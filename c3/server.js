@@ -1,9 +1,10 @@
+// Express
 const express = require("express")
 const app = express();
 
+// Mongoose
 const mongoose = require("mongoose")
 const cors = require("cors")
-app.set('view engine', 'ejs')
 
 const {
     MONGO_USER,
@@ -32,16 +33,19 @@ app.enable("trust proxy")
 app.use(cors({}));
 app.use(express.json())
 
+// Send for Testing
 app.get("/", (req,res) => {
     res.send("<h1>I AM SERVER A</h1>")
 })
 
-//localhost:${MONGO_IP}
+//localhost:3000/${MONGO_IP}
 app.use(`/${MONGO_IP}`, postRouter)
 
+// Express Ping
 const health = require('express-ping');
 app.use(health.ping());
 
+// Listen to Port 3000
 const port = process.env.PORT || 3000
 
 app.listen(port, () => console.log(`PORT: ${port}`))

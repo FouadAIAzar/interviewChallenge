@@ -1,15 +1,14 @@
+// Express
 const express = require("express")
 const app = express();
 
+// Define Port
+const port =  3001
+
+// Send to Test
 app.get("/", (req,res) => {
     res.send("<h1>I AM SERVER B</h1>")
 })
 
-const port =  3001
-
-import isPortReachable from './node_modules/is-port-reachable.js';
-
-console.log(await isPortReachable(80, {host: 'google.com'}));
-
-
+// Listen to Port
 app.listen(port, () => console.log(`PORT: ${port}`))
