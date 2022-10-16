@@ -14,11 +14,13 @@ sudo docker logs c3_server2_1
 sudo docker exec -it c3_server_1 bash
 sudo docker exec -it c3_server2_1 bash
 
+# Inside the bash command of c3_server2_1
+ping c3_server_1 
+
 # Exit any bash using
 exit
 
-# Inside the bash command of c3_server2_1
-ping c3_server_1 
+
 # This should show the server2 can reach server
 
 # When you're all done, run this command to decompose container and remove all associated volumes

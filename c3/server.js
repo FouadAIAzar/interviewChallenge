@@ -4,7 +4,6 @@ const app = express();
 
 // Mongoose
 const mongoose = require("mongoose")
-const cors = require("cors")
 
 const {
     MONGO_USER,
@@ -30,7 +29,6 @@ const tryAgain = () => {
 
 tryAgain();
 app.enable("trust proxy")
-app.use(cors({}));
 app.use(express.json())
 
 // Send for Testing
