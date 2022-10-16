@@ -1,0 +1,21 @@
+
+# Run this command to build containers. The name of the containers will be:
+# c3_server_1 if not c2-server-1
+# c3_server2_1 if not c2-server2-1
+# c3_omics_1 if not c3_omics_1
+sudo docker-compose -f docker-compse.yml -f docker-compose-prod.yml up --build -d
+# I would reccommend using -d since Mongo is quite verbose at start up (blah blah blah)
+
+# Check out logs from each server
+sudo docker logs c3_server_1
+sudo docker logs c3_server2_1
+
+# Run this command to open bash
+sudo docker exec -it c3_server_1 bash
+sudo docker exec -it c3_server2_1 bash
+
+# Inside the bash command of c3_server2_1
+ping c3_server_1 #This should show the server2 can reach server
+
+# When you're all done, run this command to decompose container and remove all associated volumes
+sudo docker-compose -f docker-compse.yml -f docker-compose-prod.yml down -v

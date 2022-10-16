@@ -10,6 +10,9 @@ RUN if [ "$NODE_ENV" = "development" ]; \
 
 COPY . ./
 
+RUN apt-get update
+RUN apt-get install iputils-ping -y
+
 ENV PORT 3000
 EXPOSE $PORT
 CMD ["node", "server.js"]
