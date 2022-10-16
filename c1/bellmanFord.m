@@ -62,7 +62,9 @@ for i=1:(N-1)
     highlight(p,TR,'EdgeColor','red','LineWidth',5);
     title("Shortest Path")
 end
+
 %% Convert results to table for your viewing pleasure
+
 d = array2table(d,"VariableNames",labels);
 allIterations = array2table(allIterations,"VariableNames",labels);
 

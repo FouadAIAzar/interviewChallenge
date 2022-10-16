@@ -3,7 +3,7 @@ chmod +x ./change.sh
 ./change.sh
 
 # Run this command to build server container. The name of the container will be:
-# c2_server_1
+# c2_server_1 if not c2-server-1
 sudo docker-compose up --build
 
 # Pass the -d flag to run in detach mode
