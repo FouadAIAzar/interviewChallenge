@@ -41,10 +41,6 @@ app.get("/", (req,res) => {
 //localhost:3000/${MONGO_IP}
 app.use(`/${MONGO_IP}`, postRouter)
 
-// Express Ping
-const health = require('express-ping');
-app.use(health.ping());
-
 // Listen to Port 3000
 const port = process.env.PORT || 3000
 

@@ -3,7 +3,7 @@
 # c3_server_1 if not c2-server-1
 # c3_server2_1 if not c2-server2-1
 # c3_omics_1 if not c3_omics_1
-sudo docker-compose -f docker-compse.yml -f docker-compose-prod.yml up --build -d
+sudo docker-compose -f docker-compose.yml -f docker-compose-prod.yml up --build -d
 # I would reccommend using -d since Mongo is quite verbose at start up (blah blah blah)
 
 # Check out logs from each server
